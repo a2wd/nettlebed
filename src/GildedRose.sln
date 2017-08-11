@@ -3,11 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose.Tests", "GildedRose.Tests\GildedRose.Tests.csproj", "{E7698C47-B86D-451A-899F-94E0005123C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Tests", "GildedRose.Tests\GildedRose.Tests.csproj", "{E7698C47-B86D-451A-899F-94E0005123C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose.Console", "GildedRose.Console\GildedRose.Console.csproj", "{DCB8A1F4-9E78-410C-A3C7-382E39C1A88F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Console", "GildedRose.Console\GildedRose.Console.csproj", "{DCB8A1F4-9E78-410C-A3C7-382E39C1A88F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose.Core", "GildedRose.Core\GildedRose.Core.csproj", "{6DE3E12B-6DF5-42E6-9DB3-69E1FD0D1A18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Core", "GildedRose.Core\GildedRose.Core.csproj", "{6DE3E12B-6DF5-42E6-9DB3-69E1FD0D1A18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{95EB1BA7-2BA7-4234-8504-0F34985B46EC}"
+	ProjectSection(SolutionItems) = preProject
+		..\docs\GildedRoseRequirements.txt = ..\docs\GildedRoseRequirements.txt
+		..\docs\license.txt = ..\docs\license.txt
+		..\docs\README.md = ..\docs\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
