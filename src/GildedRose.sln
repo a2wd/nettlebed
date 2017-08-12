@@ -13,7 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 	ProjectSection(SolutionItems) = preProject
 		..\docs\GildedRoseRequirements.txt = ..\docs\GildedRoseRequirements.txt
 		..\docs\license.txt = ..\docs\license.txt
-		..\docs\README.md = ..\docs\README.md
+		..\README.md = ..\README.md
+		..\docs\README.ORIGIN.md = ..\docs\README.ORIGIN.md
 	EndProjectSection
 EndProject
 Global
