@@ -22,12 +22,17 @@ namespace GildedRose.Tests
         }
 
         [Test]
-        public void BeAbleToAddASimpleItem()
+        public void NeverLowerQualityBelow0()
         {
-			IList<Item> Items = new List<Item> { new Item{Name = "foo", SellIn = 0, Quality = 0} };
-			GildedRose app = new GildedRose(Items);
-			app.UpdateQuality();
-			Assert.AreEqual("foo", Items[0].Name);
+            var sellIn = 1;
+            var quality = 1;
+            var item = GetSampleItemAsList(sellIn, quality);
+
+            var gildedRose = new GildedRose(item);
+            gildedRose.UpdateQuality();
+            gildedRose.UpdateQuality();
+
+            Assert.AreEqual(0, item[0].Quality);
         }
 
         private IList<Item> GetSampleItemAsList(int sellIn, int quality)
