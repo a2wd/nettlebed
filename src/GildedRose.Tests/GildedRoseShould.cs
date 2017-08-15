@@ -66,7 +66,7 @@ namespace GildedRose.Tests
         {
             var sellIn = 1;
             var quality = 1;
-            var name = "Aged Brie";
+            var name = Constants.Names.Brie;
             var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
             var gildedRose = new GildedRose(item);
@@ -80,7 +80,7 @@ namespace GildedRose.Tests
         {
             var sellIn = 1;
             var quality = 50;
-            var name = "Aged Brie";
+            var name = Constants.Names.Brie;
             var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
             var gildedRose = new GildedRose(item);
@@ -93,8 +93,8 @@ namespace GildedRose.Tests
         public void NeverChangeThePropertiesOfSulfuras()
         {
             var sellIn = 10;
-            var quality = 80;
-            var name = "Sulfuras, Hand of Ragnaros";
+            var quality = Constants.Qualities.Sulfuras;
+            var name = Constants.Names.Sulfuras;
             var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
             var gildedRose = new GildedRose(item);
@@ -110,7 +110,7 @@ namespace GildedRose.Tests
 
             var sellIn = 20;
             var quality = 10;
-            var name = "Backstage passes to a TAFKAL80ETC concert";
+            var name = Constants.Names.BackstagePasses;
             var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
             var gildedRose = new GildedRose(item);
@@ -126,7 +126,7 @@ namespace GildedRose.Tests
 
             var sellIn = 10;
             var quality = 10;
-            var name = "Backstage passes to a TAFKAL80ETC concert";
+            var name = Constants.Names.BackstagePasses;
             var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
             var gildedRose = new GildedRose(item);
@@ -142,7 +142,7 @@ namespace GildedRose.Tests
 
             var sellIn = 5;
             var quality = 10;
-            var name = "Backstage passes to a TAFKAL80ETC concert";
+            var name = Constants.Names.BackstagePasses;
             var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
             var gildedRose = new GildedRose(item);
@@ -157,7 +157,7 @@ namespace GildedRose.Tests
         {
             var sellIn = 0;
             var quality = 10;
-            var name = "Backstage passes to a TAFKAL80ETC concert";
+            var name = Constants.Names.BackstagePasses;
             var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
             var gildedRose = new GildedRose(item);
