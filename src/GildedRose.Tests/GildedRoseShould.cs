@@ -93,7 +93,7 @@ namespace GildedRose.Tests
         public void NeverChangeThePropertiesOfSulfuras()
         {
             var sellIn = 10;
-            var quality = 10;
+            var quality = 80;
             var name = "Sulfuras, Hand of Ragnaros";
             var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
