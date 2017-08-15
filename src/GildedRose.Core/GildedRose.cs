@@ -1,14 +1,18 @@
 ﻿namespace GildedRose.Core
 {
+    using global::GildedRose.Core.Inventory;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class GildedRose
     {
+        private IList<IInventoryItem> InventoryItems;
         private IList<Item> Items;
 
-        public GildedRose(IList<Item> Items)
+        public GildedRose(IList<IInventoryItem> inventoryItems)
         {
-            this.Items = Items;
+            InventoryItems = inventoryItems;
+            Items = inventoryItems.Select(i => i.GetItem()).ToList();
         }
 
         public void UpdateQuality()
