@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace GildedRose.Core.Inventory
+﻿namespace GildedRose.Core.Inventory
 {
-    public class RegularItem : IInventoryItem
+    public abstract class InventoryItem
     {
         private Item _item;
         
-        public RegularItem(Item item)
+        public InventoryItem(Item item)
         {
             _item = item;
         }

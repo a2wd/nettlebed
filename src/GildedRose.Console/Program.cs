@@ -1,8 +1,10 @@
 ﻿namespace GildedRose.Console
 {
     using GildedRose.Core;
+    using GildedRose.Core.Inventory;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     class Program
     {
@@ -38,7 +40,9 @@
 				new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
 			};
 
-			var app = new GildedRose(Items);
+            var inventoryItemList = Items.Select<Item, InventoryItem>(i => new RegularInventoryItem(i)).ToList();
+
+			var app = new GildedRose(inventoryItemList);
 
 			
 			for (var i = 0; i < 31; i++)

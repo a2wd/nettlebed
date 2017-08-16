@@ -18,6 +18,7 @@
         {
             public const int SellIn = 1;
             public const int Quality = 1;
+            public const int ExpiredQuality = 2;
         }
     }
 }

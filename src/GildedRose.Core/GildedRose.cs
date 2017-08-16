@@ -6,19 +6,38 @@
 
     public class GildedRose
     {
-        private IList<IInventoryItem> InventoryItems;
+        private IList<InventoryItem> InventoryItems;
         private IList<Item> Items;
 
-        public GildedRose(IList<IInventoryItem> inventoryItems)
+        public GildedRose(IList<InventoryItem> inventoryItems)
         {
             InventoryItems = inventoryItems;
             Items = inventoryItems.Select(i => i.GetItem()).ToList();
         }
 
+        private bool IsNamedItem(string name)
+        {
+            return name == Constants.Names.Brie || name == Constants.Names.BackstagePasses || name == Constants.Names.Sulfuras;
+        }
+
         public void UpdateQuality()
         {
+            foreach (var inventoryItem in InventoryItems)
+            {
+                var item = inventoryItem.GetItem();
+                if(IsNamedItem(item.Name) == false)
+                {
+                    inventoryItem.UpdateSellInAndQuality();
+                }
+            }
+
             for (var i = 0; i < Items.Count; i++)
             {
+                if(IsNamedItem(Items[i].Name) == false)
+                {
+                    continue;
+                }
+
                 if (Items[i].Name != Constants.Names.Brie && Items[i].Name != Constants.Names.BackstagePasses)
                 {
                     if (Items[i].Quality > 0)

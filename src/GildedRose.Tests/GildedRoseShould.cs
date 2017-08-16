@@ -1,6 +1,7 @@
 namespace GildedRose.Tests
 {
     using GildedRose.Core;
+    using GildedRose.Core.Inventory;
     using NUnit.Framework;
     using System.Collections.Generic;
 
@@ -17,8 +18,8 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(sellIn - 1, item[0].SellIn);
-            Assert.AreEqual(quality - 1, item[0].Quality);
+            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
+            Assert.AreEqual(quality - 1, item[0].GetItem().Quality);
         }
 
         [Test]
@@ -32,7 +33,7 @@ namespace GildedRose.Tests
             gildedRose.UpdateQuality();
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(0, item[0].Quality);
+            Assert.AreEqual(0, item[0].GetItem().Quality);
         }
 
         public void NeverLowerSellInBelow0()
@@ -45,7 +46,7 @@ namespace GildedRose.Tests
             gildedRose.UpdateQuality();
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(0, item[0].SellIn);
+            Assert.AreEqual(0, item[0].GetItem().SellIn);
         }
 
         [Test]
@@ -58,7 +59,7 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(0, item[0].Quality);
+            Assert.AreEqual(0, item[0].GetItem().Quality);
         }
 
         [Test]
@@ -72,7 +73,7 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality + 1, item[0].Quality);
+            Assert.AreEqual(quality + 1, item[0].GetItem().Quality);
         }
 
         [Test]
@@ -86,7 +87,7 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality, item[0].Quality);
+            Assert.AreEqual(quality, item[0].GetItem().Quality);
         }
 
         [Test]
@@ -100,8 +101,8 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality, item[0].Quality);
-            Assert.AreEqual(sellIn, item[0].SellIn);
+            Assert.AreEqual(quality, item[0].GetItem().Quality);
+            Assert.AreEqual(sellIn, item[0].GetItem().SellIn);
         }
 
         [Test]
@@ -116,8 +117,8 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality + 1, item[0].Quality);
-            Assert.AreEqual(sellIn - 1, item[0].SellIn);
+            Assert.AreEqual(quality + 1, item[0].GetItem().Quality);
+            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
         }
 
         [Test]
@@ -132,8 +133,8 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality + 2, item[0].Quality);
-            Assert.AreEqual(sellIn - 1, item[0].SellIn);
+            Assert.AreEqual(quality + 2, item[0].GetItem().Quality);
+            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
         }
 
         [Test]
@@ -148,8 +149,8 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality + 3, item[0].Quality);
-            Assert.AreEqual(sellIn - 1, item[0].SellIn);
+            Assert.AreEqual(quality + 3, item[0].GetItem().Quality);
+            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
         }
 
         [Test]
@@ -163,29 +164,33 @@ namespace GildedRose.Tests
             var gildedRose = new GildedRose(item);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(0, item[0].Quality);
-            Assert.AreEqual(sellIn - 1, item[0].SellIn);
+            Assert.AreEqual(0, item[0].GetItem().Quality);
+            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
         }
 
         #region Helpers
-        private IList<Item> GetSampleItemAsList(int sellIn, int quality)
+        private IList<InventoryItem> GetSampleItemAsList(int sellIn, int quality)
         {
             var emptyName = string.Empty;
 
             return GetNamedSampleItemAsList(sellIn, quality, emptyName);
         }
 
-        private IList<Item> GetNamedSampleItemAsList(int sellIn, int quality, string name)
+        private IList<InventoryItem> GetNamedSampleItemAsList(int sellIn, int quality, string name)
         {
-            return new List<Item>
+            var itemList = new List<InventoryItem>();
+            var item = new Item
             {
-                new Item
-                {
-                    Name = name,
-                    SellIn = sellIn,
-                    Quality = quality
-                }
+                Name = name,
+                SellIn = sellIn,
+                Quality = quality
             };
+
+            var inventoryItem = new RegularInventoryItem(item);
+
+            itemList.Add(inventoryItem);
+
+            return itemList;
         }
         #endregion
     }
