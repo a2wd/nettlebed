@@ -145,49 +145,82 @@ namespace GildedRose.Tests
         [Test]
         public void IncreaseBackstagePassQualityWhileSellInIsAbove10()
         {
-
             var sellIn = 20;
             var quality = 10;
             var name = Constants.Names.BackstagePasses;
-            var item = GetNamedSampleItemAsList(sellIn, quality, name);
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
 
-            var gildedRose = new GildedRose(item);
+            var inventoryItem = new ExpiringIncreasingQualityInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality + 1, item[0].GetItem().Quality);
-            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
+            Assert.AreEqual(quality + 1, item.Quality);
+            Assert.AreEqual(sellIn - 1, item.SellIn);
         }
 
         [Test]
         public void IncreaseBackstagePassQualityBy2WhileSellInIsBetween5And10()
         {
-
             var sellIn = 10;
             var quality = 10;
             var name = Constants.Names.BackstagePasses;
-            var item = GetNamedSampleItemAsList(sellIn, quality, name);
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
 
-            var gildedRose = new GildedRose(item);
+            var inventoryItem = new ExpiringIncreasingQualityInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality + 2, item[0].GetItem().Quality);
-            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
+            Assert.AreEqual(quality + 2, item.Quality);
+            Assert.AreEqual(sellIn - 1, item.SellIn);
         }
 
         [Test]
         public void IncreaseBackstagePassQualityBy3WhileSellInIsBetween0And5()
         {
-
             var sellIn = 5;
             var quality = 10;
             var name = Constants.Names.BackstagePasses;
-            var item = GetNamedSampleItemAsList(sellIn, quality, name);
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
 
-            var gildedRose = new GildedRose(item);
+            var inventoryItem = new ExpiringIncreasingQualityInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality + 3, item[0].GetItem().Quality);
-            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
+            Assert.AreEqual(quality + 3, item.Quality);
+            Assert.AreEqual(sellIn - 1, item.SellIn);
         }
 
         [Test]
@@ -196,13 +229,79 @@ namespace GildedRose.Tests
             var sellIn = 0;
             var quality = 10;
             var name = Constants.Names.BackstagePasses;
-            var item = GetNamedSampleItemAsList(sellIn, quality, name);
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
 
-            var gildedRose = new GildedRose(item);
+            var inventoryItem = new ExpiringIncreasingQualityInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(0, item[0].GetItem().Quality);
-            Assert.AreEqual(sellIn - 1, item[0].GetItem().SellIn);
+            Assert.AreEqual(0, item.Quality);
+            Assert.AreEqual(sellIn - 1, item.SellIn);
+        }
+
+        [Test]
+        public void DecreaseTheQualityOfMagicalItemsAtTwiceTheNormalRate()
+        {
+            var name = Constants.Names.ManaCake;
+            var quality = 10;
+            var sellIn = 10;
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
+
+            var inventoryItem = new RapidlyDecreasingQualityInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
+            gildedRose.UpdateQuality();
+
+            Assert.AreEqual(quality - 2, item.Quality);
+            Assert.AreEqual(sellIn - 1, item.SellIn);
+        }
+
+        [Test]
+        public void DecreaseTheQualityOfMagicalItemsAtTwiceTheNormalRateWhenPastSellIn()
+        {
+            var name = Constants.Names.ManaCake;
+            var quality = 10;
+            var sellIn = 0;
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
+
+            var inventoryItem = new RapidlyDecreasingQualityInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
+            gildedRose.UpdateQuality();
+
+            Assert.AreEqual(quality - 4, item.Quality);
+            Assert.AreEqual(sellIn - 1, item.SellIn);
         }
 
         #region Helpers

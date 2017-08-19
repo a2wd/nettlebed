@@ -34,7 +34,7 @@
             AdjustItemQualityIfBelow0();
         }
 
-        private void AdjustItemQualityIfBelow0()
+        protected void AdjustItemQualityIfBelow0()
         {
             if(_item.Quality < 0)
             {
@@ -42,7 +42,7 @@
             }
         }
 
-        private bool ItemIsPastSellIn()
+        protected bool ItemIsPastSellIn()
         {
             return _item.SellIn <= 0;
         }
