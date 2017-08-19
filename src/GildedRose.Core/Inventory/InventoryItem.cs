@@ -2,7 +2,7 @@
 {
     public abstract class InventoryItem
     {
-        private Item _item;
+        protected Item _item;
         
         public InventoryItem(Item item)
         {
@@ -20,7 +20,7 @@
             UpdateSellIn();
         }
 
-        private void UpdateQuality()
+        protected virtual void UpdateQuality()
         {
             if(ItemIsPastSellIn())
             {
@@ -47,7 +47,7 @@
             return _item.SellIn <= 0;
         }
 
-        private void UpdateSellIn()
+        protected virtual void UpdateSellIn()
         {
             _item.SellIn--;
         }

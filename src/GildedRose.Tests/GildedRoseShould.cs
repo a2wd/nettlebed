@@ -68,12 +68,24 @@ namespace GildedRose.Tests
             var sellIn = 1;
             var quality = 1;
             var name = Constants.Names.Brie;
-            var item = GetNamedSampleItemAsList(sellIn, quality, name);
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
 
-            var gildedRose = new GildedRose(item);
+            var inventoryItem = new IncreasingQualityInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality + 1, item[0].GetItem().Quality);
+            Assert.AreEqual(quality + 1, item.Quality);
         }
 
         [Test]
@@ -82,12 +94,24 @@ namespace GildedRose.Tests
             var sellIn = 1;
             var quality = 50;
             var name = Constants.Names.Brie;
-            var item = GetNamedSampleItemAsList(sellIn, quality, name);
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
 
-            var gildedRose = new GildedRose(item);
+            var inventoryItem = new IncreasingQualityInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality, item[0].GetItem().Quality);
+            Assert.AreEqual(quality, item.Quality);
         }
 
         [Test]
@@ -96,13 +120,26 @@ namespace GildedRose.Tests
             var sellIn = 10;
             var quality = Constants.Qualities.Sulfuras;
             var name = Constants.Names.Sulfuras;
-            var item = GetNamedSampleItemAsList(sellIn, quality, name);
 
-            var gildedRose = new GildedRose(item);
+            var item = new Item
+            {
+                Name = name,
+                Quality = quality,
+                SellIn = sellIn
+            };
+
+            var inventoryItem = new UnchangingInventoryItem(item);
+
+            var inventoryItemList = new List<InventoryItem>
+            {
+                inventoryItem
+            };
+
+            var gildedRose = new GildedRose(inventoryItemList);
             gildedRose.UpdateQuality();
 
-            Assert.AreEqual(quality, item[0].GetItem().Quality);
-            Assert.AreEqual(sellIn, item[0].GetItem().SellIn);
+            Assert.AreEqual(quality, item.Quality);
+            Assert.AreEqual(sellIn, item.SellIn);
         }
 
         [Test]

@@ -20,5 +20,10 @@
             public const int Quality = 1;
             public const int ExpiredQuality = 2;
         }
+
+        public class Values
+        {
+            public const int MaxQuality = 50;
+        }
     }
 }

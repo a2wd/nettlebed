@@ -17,7 +17,7 @@
 
         private bool IsNamedItem(string name)
         {
-            return name == Constants.Names.Brie || name == Constants.Names.BackstagePasses || name == Constants.Names.Sulfuras;
+            return name == Constants.Names.BackstagePasses;
         }
 
         public void UpdateQuality()
